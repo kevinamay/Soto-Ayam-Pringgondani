@@ -55,7 +55,7 @@ function MenuCard({ item }: { item: { name: string, image: string, desc: string 
           src={item.image} 
           alt={item.name} 
           fill 
-          className="object-cover rounded-t-2xl" 
+          className="object-contain p-4 rounded-t-2xl" 
           sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 25vw" 
         />
       </div>

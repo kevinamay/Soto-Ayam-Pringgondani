@@ -76,7 +76,7 @@ export default function Home() {
                   src="/images/soto.png" 
                   alt="Soto Ayam" 
                   fill 
-                  className="object-cover rounded-t-2xl" 
+                  className="object-contain p-4 rounded-t-2xl" 
                   sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 25vw" 
                 />
               </div>
@@ -93,7 +93,7 @@ export default function Home() {
                   src="/images/rawon.png" 
                   alt="Rawon" 
                   fill 
-                  className="object-cover rounded-t-2xl" 
+                  className="object-contain p-4 rounded-t-2xl" 
                   sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 25vw" 
                 />
               </div>
@@ -110,7 +110,7 @@ export default function Home() {
                   src="/images/pecel.png" 
                   alt="Pecel Madiun" 
                   fill 
-                  className="object-cover rounded-t-2xl" 
+                  className="object-contain p-4 rounded-t-2xl" 
                   sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 25vw" 
                 />
               </div>
@@ -127,7 +127,7 @@ export default function Home() {
                   src="/images/campur.png" 
                   alt="Nasi Campur" 
                   fill 
-                  className="object-cover rounded-t-2xl" 
+                  className="object-contain p-4 rounded-t-2xl" 
                   sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 25vw" 
                 />
               </div>
