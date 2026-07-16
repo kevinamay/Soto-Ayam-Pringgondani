@@ -31,9 +31,9 @@ export default function Home() {
             </p>
             
             <div className="mt-8">
-              <button className="bg-[var(--color-terracotta)] text-white font-bold px-8 py-3 rounded-full hover:bg-[var(--color-terracotta-dark)] transition-colors shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 duration-200">
+              <Link href="/scan-meja" className="inline-block bg-[var(--color-terracotta)] text-white font-bold px-8 py-3 rounded-full hover:bg-[var(--color-terracotta-dark)] transition-colors shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 duration-200">
                 Pesan Sekarang
-              </button>
+              </Link>
             </div>
           </div>
 
@@ -174,6 +174,66 @@ export default function Home() {
                   Selama lebih dari empat dekade, kami menjaga cita rasa otentik Jawa yang diwariskan dari generasi ke generasi. Setiap mangkuk soto yang tersaji membawa kehangatan tradisi dan dedikasi kami dalam memilih rempah-rempah terbaik dari tanah Jawa.
                 </p>
               </div>
+            </div>
+
+          </div>
+
+        </div>
+      </section>
+      <section className="bg-[var(--color-cream)] py-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          
+          <h2 className="text-center font-serif font-bold text-[var(--color-dark-brown)] text-4xl">
+            Kunjungi Warung Kami
+          </h2>
+
+          <div className="mt-12 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+            
+            {/* Left Column: Google Maps iframe */}
+            <div className="rounded-2xl shadow-lg overflow-hidden border-4 border-white">
+              <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d10000!2d111.414764!3d-8.0364233!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e7973fa0214b6cb%3A0xe14f18f2a7aa8373!2sSoto%20Ayam%20Pringgondani!5e0!3m2!1sid!2sid!4v1700000000000!5m2!1sid!2sid" 
+                width="100%" 
+                height="400" 
+                style={{ border: 0 }} 
+                allowFullScreen={false} 
+                loading="lazy" 
+                referrerPolicy="no-referrer-when-downgrade"
+              ></iframe>
+            </div>
+
+            {/* Right Column: Contact Info */}
+            <div className="flex flex-col gap-8">
+              
+              <div>
+                <h3 className="font-serif font-bold text-[var(--color-dark-brown)] text-xl mb-2">
+                  Alamat
+                </h3>
+                <p className="font-sans text-[var(--color-grayish-brown)] text-base lg:text-lg">
+                  Slahung, Kabupaten Ponorogo, Jawa Timur 63464
+                </p>
+              </div>
+
+              <div>
+                <h3 className="font-serif font-bold text-[var(--color-dark-brown)] text-xl mb-2">
+                  Jam Buka
+                </h3>
+                <p className="font-sans text-[var(--color-grayish-brown)] text-base lg:text-lg">
+                  Senin – Jumat: 07.00 – 21.00 WIB
+                  <br />
+                  Sabtu – Minggu: 06.30 – 22.00 WIB
+                </p>
+              </div>
+
+              <div>
+                <h3 className="font-serif font-bold text-[var(--color-dark-brown)] text-xl mb-2">
+                  Kontak
+                </h3>
+                <p className="font-sans text-[var(--color-grayish-brown)] text-base lg:text-lg">
+                  (0274) 123-4567 &bull; WhatsApp: 0812-3456-7890
+                </p>
+              </div>
+
             </div>
 
           </div>
