@@ -57,7 +57,7 @@ export default function ScanMejaPage() {
           <Scanner
             onScan={handleScan}
             onError={(err) => {
-              console.error(err);
+              // Kita hilangkan console.error agar Next.js tidak memunculkan overlay error merah
               setError("Gagal mengakses kamera. Pastikan Anda telah memberikan izin kamera pada browser Anda.");
             }}
             components={{
