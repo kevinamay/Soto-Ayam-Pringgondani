@@ -12,8 +12,8 @@ export default function Home() {
         <div className="hidden md:flex items-center gap-8 text-base">
           <Link href="#" className="transition-colors hover:text-[var(--color-terracotta)]">Beranda</Link>
           <Link href="/menu" className="transition-colors hover:text-[var(--color-terracotta)]">Menu</Link>
-          <Link href="#" className="transition-colors hover:text-[var(--color-terracotta)]">Sejarah</Link>
-          <Link href="#" className="transition-colors hover:text-[var(--color-terracotta)]">Lokasi</Link>
+          <Link href="#sejarah" className="transition-colors hover:text-[var(--color-terracotta)]">Sejarah</Link>
+          <Link href="#lokasi" className="transition-colors hover:text-[var(--color-terracotta)]">Lokasi</Link>
         </div>
       </nav>
 
@@ -148,7 +148,7 @@ export default function Home() {
           
         </div>
       </section>
-      <section className="bg-[var(--color-cream)] py-20 lg:py-24">
+      <section id="sejarah" className="bg-[var(--color-cream)] py-20 lg:py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
           <div className="relative flex flex-col lg:flex-row items-center">
@@ -180,7 +180,7 @@ export default function Home() {
 
         </div>
       </section>
-      <section className="bg-[var(--color-cream)] py-20">
+      <section id="lokasi" className="bg-[var(--color-cream)] py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
           <h2 className="text-center font-serif font-bold text-[var(--color-dark-brown)] text-4xl">
