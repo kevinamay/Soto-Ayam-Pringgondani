@@ -11,7 +11,7 @@ export default function Home() {
         
         <div className="hidden md:flex items-center gap-8 text-base">
           <Link href="#" className="transition-colors hover:text-[var(--color-terracotta)]">Beranda</Link>
-          <Link href="#" className="transition-colors hover:text-[var(--color-terracotta)]">Menu</Link>
+          <Link href="/menu" className="transition-colors hover:text-[var(--color-terracotta)]">Menu</Link>
           <Link href="#" className="transition-colors hover:text-[var(--color-terracotta)]">Sejarah</Link>
           <Link href="#" className="transition-colors hover:text-[var(--color-terracotta)]">Lokasi</Link>
         </div>
@@ -141,9 +141,9 @@ export default function Home() {
 
           {/* Bottom CTA Button */}
           <div className="mt-12 flex justify-center">
-            <button className="bg-[var(--color-terracotta)] text-white font-sans font-bold px-8 py-3 rounded-full hover:bg-[var(--color-terracotta-dark)] transition-colors shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 duration-200">
+            <Link href="/menu" className="inline-block bg-[var(--color-terracotta)] text-white font-sans font-bold px-8 py-3 rounded-full hover:bg-[var(--color-terracotta-dark)] transition-colors shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 duration-200">
               Lihat Semua Menu
-            </button>
+            </Link>
           </div>
           
         </div>
