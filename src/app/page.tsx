@@ -30,9 +30,12 @@ export default function Home() {
               Kelezatan autentik masakan Jawa yang diwariskan turun-temurun, diracik dengan cinta dan rempah pilihan dari tanah Jawa.
             </p>
             
-            <div className="mt-8">
+            <div className="mt-8 flex gap-4 flex-wrap">
               <Link href="/scan-meja" className="inline-block bg-[var(--color-terracotta)] text-white font-bold px-8 py-3 rounded-full hover:bg-[var(--color-terracotta-dark)] transition-colors shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 duration-200">
                 Pesan Sekarang
+              </Link>
+              <Link href="/delivery" className="inline-block bg-transparent text-[var(--color-terracotta)] border-2 border-[var(--color-terracotta)] font-bold px-8 py-3 rounded-full hover:bg-[var(--color-terracotta)] hover:text-white transition-colors shadow-sm hover:shadow-md transform hover:-translate-y-0.5 duration-200">
+                Pesan Antar
               </Link>
             </div>
           </div>
