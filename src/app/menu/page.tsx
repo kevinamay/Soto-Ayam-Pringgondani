@@ -9,17 +9,17 @@ const menuData = {
     { name: "Nasi Campur", image: "/images/campur.png", desc: "Perpaduan lauk pauk nusantara lengkap dalam satu piring." },
   ],
   minuman: [
-    { name: "Es Teh / Teh Panas", image: "/images/esteh.png", desc: "Teh melati pilihan segar." },
-    { name: "Es Jeruk", image: "/images/esjeruk.png", desc: "Perasan jeruk manis segar kaya vitamin C." },
-    { name: "Kopi Hitam", image: "/images/hitam.png", desc: "Kopi tubruk hitam pekat beraroma khas." },
-    { name: "Kopi Susu", image: "/images/susu.png", desc: "Perpaduan kopi dan susu kental manis." },
-    { name: "Lemon Tea", image: "/images/lemontea.png", desc: "Teh segar dengan irisan lemon asli." },
-    { name: "Air Mineral", image: "/images/mineral.png", desc: "Air mineral botol segar." },
-    { name: "Sprite", image: "/images/sprite.png", desc: "Minuman soda rasa lemon-lime yang menyegarkan." },
-    { name: "Coca Cola", image: "/images/cola.png", desc: "Minuman soda cola klasik penawar dahaga." },
-    { name: "Fanta", image: "/images/fanta.png", desc: "Minuman soda rasa stroberi ceria." },
-    { name: "Floridina", image: "/images/floridina.png", desc: "Minuman rasa jeruk dengan bulir utuh." },
-    { name: "Teh Pucuk", image: "/images/pucuk.png", desc: "Teh melati dalam kemasan praktis." },
+    { name: "Es Teh / Teh Panas", image: "/images/esteh.png", desc: "Teh melati pilihan segar.", contain: true },
+    { name: "Es Jeruk", image: "/images/esjeruk.png", desc: "Perasan jeruk manis segar kaya vitamin C.", contain: true },
+    { name: "Kopi Hitam", image: "/images/hitam.png", desc: "Kopi tubruk hitam pekat beraroma khas.", contain: true },
+    { name: "Kopi Susu", image: "/images/susu.png", desc: "Perpaduan kopi dan susu kental manis.", contain: true },
+    { name: "Lemon Tea", image: "/images/lemontea.png", desc: "Teh segar dengan irisan lemon asli.", contain: true },
+    { name: "Air Mineral", image: "/images/mineral.png", desc: "Air mineral botol segar.", contain: true },
+    { name: "Sprite", image: "/images/sprite.png", desc: "Minuman soda rasa lemon-lime yang menyegarkan.", contain: true },
+    { name: "Coca Cola", image: "/images/cola.png", desc: "Minuman soda cola klasik penawar dahaga.", contain: true },
+    { name: "Fanta", image: "/images/fanta.png", desc: "Minuman soda rasa stroberi ceria.", contain: true },
+    { name: "Floridina", image: "/images/floridina.png", desc: "Minuman rasa jeruk dengan bulir utuh.", contain: true },
+    { name: "Teh Pucuk", image: "/images/pucuk.png", desc: "Teh melati dalam kemasan praktis.", contain: true },
   ],
   pendamping: [
     { name: "Sate Ati Ampela", image: "/images/ati.png", desc: "Sate ati ampela bumbu kuning yang meresap." },
@@ -27,7 +27,7 @@ const menuData = {
     { name: "Sate Usus", image: "/images/usus.png", desc: "Sate usus ayam bumbu gurih yang renyah." },
     { name: "Ayam Goreng", image: "/images/ayamgoreng.png", desc: "Ayam goreng bumbu lengkuas gurih dan empuk." },
     { name: "Telur Dadar", image: "/images/dadar.png", desc: "Telur dadar tebal khas rumahan." },
-    { name: "Telur Asin", image: "/images/telurasin.png", desc: "Telur bebek asin masir gurih sempurna." },
+    { name: "Telur Asin", image: "/images/telurasin.png", desc: "Telur bebek asin masir gurih sempurna.", contain: true },
     { name: "Telur Rebus", image: "/images/telurrebus.png", desc: "Telur rebus matang sempurna kaya protein." },
     { name: "Bakwan Jagung", image: "/images/bakwan.png", desc: "Bakwan jagung manis renyah di luar lembut di dalam." },
     { name: "Tempe Goreng", image: "/images/tempegoreng.png", desc: "Tempe goreng bumbu ketumbar gurih." },
@@ -47,7 +47,7 @@ const menuData = {
   ]
 };
 
-function MenuCard({ item }: { item: { name: string, image: string, desc: string } }) {
+function MenuCard({ item }: { item: { name: string, image: string, desc: string, contain?: boolean } }) {
   return (
     <div className="bg-white rounded-2xl shadow-md hover:shadow-xl transition-shadow flex flex-col overflow-hidden h-full">
       <div className="relative w-full h-48">
@@ -55,7 +55,7 @@ function MenuCard({ item }: { item: { name: string, image: string, desc: string 
           src={item.image} 
           alt={item.name} 
           fill 
-          className="object-contain p-4 rounded-t-2xl" 
+          className={`${item.contain ? 'object-contain p-4' : 'object-cover'} rounded-t-2xl`} 
           sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 25vw" 
         />
       </div>
