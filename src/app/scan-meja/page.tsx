@@ -63,8 +63,7 @@ export default function ScanMejaPage() {
             components={{
               audio: true,
               onOff: true,
-              torch: true,
-              tracker: true
+              torch: true
             }}
           />
         )}
