@@ -3,6 +3,28 @@
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import dynamic from "next/dynamic";
+
+// Haversine formula to calculate distance in km
+function calculateDistance(lat1: number, lon1: number, lat2: number, lon2: number) {
+  const R = 6371; // Radius of the earth in km
+  const dLat = (lat2 - lat1) * (Math.PI / 180);
+  const dLon = (lon2 - lon1) * (Math.PI / 180);
+  const a = 
+    Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+    Math.cos(lat1 * (Math.PI / 180)) * Math.cos(lat2 * (Math.PI / 180)) * 
+    Math.sin(dLon / 2) * Math.sin(dLon / 2); 
+  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a)); 
+  const d = R * c; // Distance in km
+  return d * 1.3; // 1.3x multiplier for realistic road routing distance
+}
+
+const MapPicker = dynamic(() => import('@/components/MapPicker'), {
+  ssr: false,
+  loading: () => <div className="h-64 w-full rounded-xl bg-gray-200 animate-pulse flex items-center justify-center text-gray-500 font-semibold border border-gray-300">Memuat Peta...</div>
+});
+
+const RESTAURANT_LOC = { lat: -8.0364233, lng: 111.414764 }; // Soto Ayam Pringgondani. Change this to your exact Google Maps coordinates later.
 
 // 1. Types & Data
 type MenuItem = {
@@ -76,6 +98,11 @@ export default function DeliveryPage() {
   const [whatsapp, setWhatsapp] = useState("");
   const [alamat, setAlamat] = useState("");
   const [distance, setDistance] = useState<number>(1);
+
+  const handleLocationSelect = (lat: number, lng: number) => {
+    const dist = calculateDistance(RESTAURANT_LOC.lat, RESTAURANT_LOC.lng, lat, lng);
+    setDistance(Number(dist.toFixed(1)));
+  };
 
   const addToCart = (item: MenuItem) => {
     setCart((prev) => {
@@ -256,15 +283,12 @@ export default function DeliveryPage() {
                     onChange={(e) => setAlamat(e.target.value)}
                     className="w-full border border-gray-200 rounded-md px-3 py-2 text-sm focus:outline-none focus:border-[var(--color-terracotta)] transition-colors resize-none"
                   />
-                  <div className="flex items-center gap-2">
-                    <span className="text-sm text-gray-500 whitespace-nowrap">Estimasi Jarak (KM):</span>
-                    <input 
-                      type="number" 
-                      min="1"
-                      value={distance}
-                      onChange={(e) => setDistance(Number(e.target.value))}
-                      className="w-full border border-gray-200 rounded-md px-3 py-2 text-sm focus:outline-none focus:border-[var(--color-terracotta)] transition-colors"
-                    />
+                  <div className="mt-2">
+                    <h4 className="font-bold text-[var(--color-dark-brown)] text-sm mb-2">Pilih Titik Lokasi Pengiriman (Shopee Style)</h4>
+                    <MapPicker onLocationSelect={handleLocationSelect} />
+                    <div className="mt-2 text-sm text-[var(--color-terracotta)] font-bold">
+                      Jarak Pengiriman: {distance} KM
+                    </div>
                   </div>
                 </div>
               </div>
