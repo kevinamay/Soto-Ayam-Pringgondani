@@ -19,7 +19,10 @@ export default function MapPicker({ onLocationSelect }: { onLocationSelect: (lat
   const [position, setPosition] = useState<L.LatLng>(new L.LatLng(RESTAURANT_LOC.lat, RESTAURANT_LOC.lng));
   const markerRef = useRef<L.Marker>(null);
 
+  const [mounted, setMounted] = useState(false);
+
   useEffect(() => {
+    setMounted(true);
     onLocationSelect(position.lat, position.lng);
   }, []);
 
@@ -45,6 +48,10 @@ export default function MapPicker({ onLocationSelect }: { onLocationSelect: (lat
       },
     });
     return null;
+  }
+
+  if (!mounted) {
+    return <div className="h-64 w-full rounded-xl bg-gray-200 animate-pulse flex items-center justify-center text-gray-500 font-semibold border border-gray-300">Memuat Peta...</div>;
   }
 
   return (
