@@ -144,10 +144,7 @@ export default function DeliveryPage() {
       alert("Mohon lengkapi Data Pengiriman (Nama, WA, Alamat)!");
       return;
     }
-    if (distance < 1) {
-      alert("Jarak tidak valid (minimal 1 KM).");
-      return;
-    }
+
     
     const summary = cart.map(c => `- ${c.quantity}x ${c.name} (Catatan: ${c.note || '-'})`).join('\n');
     
