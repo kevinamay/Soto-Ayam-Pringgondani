@@ -5,12 +5,26 @@ import Image from "next/image";
 import Link from "next/link";
 import dynamic from "next/dynamic";
 
-const GoogleMapPicker = dynamic(() => import('@/components/GoogleMapPicker'), {
+// Haversine formula to calculate distance in km
+function calculateDistance(lat1: number, lon1: number, lat2: number, lon2: number) {
+  const R = 6371; // Radius of the earth in km
+  const dLat = (lat2 - lat1) * (Math.PI / 180);
+  const dLon = (lon2 - lon1) * (Math.PI / 180);
+  const a = 
+    Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+    Math.cos(lat1 * (Math.PI / 180)) * Math.cos(lat2 * (Math.PI / 180)) * 
+    Math.sin(dLon / 2) * Math.sin(dLon / 2); 
+  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a)); 
+  const d = R * c; // Distance in km
+  return d * 1.3; // 1.3x multiplier for realistic road routing distance
+}
+
+const MapPicker = dynamic(() => import('@/components/MapPicker'), {
   ssr: false,
-  loading: () => <div className="h-[300px] w-full rounded-xl bg-gray-200 animate-pulse flex items-center justify-center text-gray-500 font-semibold border border-gray-300">Memuat Peta...</div>
+  loading: () => <div className="h-64 w-full rounded-xl bg-gray-200 animate-pulse flex items-center justify-center text-gray-500 font-semibold border border-gray-300">Memuat Peta...</div>
 });
 
-const RESTAURANT_LOC = { lat: -7.9734, lng: 111.4522 }; // Soto Ayam Pringgondani. Change this to your exact Google Maps coordinates later.
+const RESTAURANT_LOC = { lat: -8.0364233, lng: 111.414764 }; // Soto Ayam Pringgondani. Change this to your exact Google Maps coordinates later.
 
 // 1. Types & Data
 type MenuItem = {
@@ -86,12 +100,8 @@ export default function DeliveryPage() {
   const [distance, setDistance] = useState<number>(1);
 
   const handleLocationSelect = (lat: number, lng: number) => {
-    if (window.google && window.google.maps && window.google.maps.geometry) {
-      const origin = new window.google.maps.LatLng(RESTAURANT_LOC.lat, RESTAURANT_LOC.lng);
-      const destination = new window.google.maps.LatLng(lat, lng);
-      const distanceInMeters = window.google.maps.geometry.spherical.computeDistanceBetween(origin, destination);
-      setDistance(Number((distanceInMeters / 1000).toFixed(1)));
-    }
+    const dist = calculateDistance(RESTAURANT_LOC.lat, RESTAURANT_LOC.lng, lat, lng);
+    setDistance(Number(dist.toFixed(1)));
   };
 
   const addToCart = (item: MenuItem) => {
@@ -122,7 +132,7 @@ export default function DeliveryPage() {
 
   const subtotal = cart.reduce((acc, item) => acc + item.price * item.quantity, 0);
   const tax = subtotal * 0.1;
-  const ongkir = distance <= 2 ? 0 : (Math.ceil(distance) - 2) * 3000;
+  const ongkir = distance <= 2 ? 0 : (distance - 2) * 3000;
   const grandTotal = subtotal + tax + ongkir;
 
   const handleCheckout = () => {
@@ -272,8 +282,8 @@ export default function DeliveryPage() {
                   />
                   <div className="mt-2">
                     <h4 className="font-bold text-[var(--color-dark-brown)] text-sm mb-2">Pilih Titik Lokasi Pengiriman (Shopee Style)</h4>
-                    <GoogleMapPicker onLocationSelect={handleLocationSelect} />
-                    <div className="mt-3 text-sm text-[var(--color-terracotta)] font-bold">
+                    <MapPicker onLocationSelect={handleLocationSelect} />
+                    <div className="mt-2 text-sm text-[var(--color-terracotta)] font-bold">
                       Jarak Pengiriman: {distance} KM
                     </div>
                   </div>
